@@ -1,7 +1,7 @@
-import React from "react";
+import Park from "./models/Park.jsx";
 
 function App() {
-  return <div>App</div>;
+  return <Park></Park>;
 }
 
 export default App;
