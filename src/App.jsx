@@ -1,7 +1,7 @@
 import Park from "./models/Park.jsx";
 
 function App() {
-  return <Park></Park>;
+  return <Park />;
 }
 
 export default App;

@@ -1,3 +1,97 @@
 * {
   box-sizing: border-box;
 }
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 1.6rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  outline: none;
+  border: none;
+  background: transparent;
+}
+
+/* ===================== Utils ===================== */
+.hidden {
+  display: none;
+}
+
+/* ===================== Modal ===================== */
+.modal {
+  position: absolute;
+  z-index: 9;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  background: #ad8671;
+  border: 4px solid #fff;
+  color: #fff;
+}
+
+.modal-wrap {
+  padding: 12px;
+}
+
+.modal-header {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #fff;
+}
+
+.modal-title {
+  font-size: 3.2rem;
+  font-weight: 700;
+}
+
+.modal-exit-btn {
+  padding: 8px 10px;
+  border: 2px solid white;
+  font-size: 1.6rem;
+}
+
+.modal-exit-btn:hover {
+  background: #fff;
+  color: #ad8671;
+  cursor: pointer;
+}
+
+.modal-project-desc {
+  font-size: 1.8rem;
+  line-height: 1.2;
+}
+
+.modal-visit-btn {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  color: #ad8671;
+  font-size: 1.8rem;
+  font-weight: 500;
+  background: #fff;
+  height: 40px;
+  width: 100%;
+}
+
+.modal-visit-btn:hover {
+  color: #fff;
+  background: #ad8671;
+}
