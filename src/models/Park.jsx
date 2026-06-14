@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, OrbitControls } from "@react-three/drei";
@@ -58,6 +58,18 @@ const ParkModel = () => {
 };
 
 function Park() {
+  const { isStartMenuDisplayed } = useProjectStore();
+
+  useEffect(() => {
+    if (!isStartMenuDisplayed) {
+      const bgMusic = new Audio("/sfx/background-music.mp3");
+      bgMusic.loop = true;
+      bgMusic.volume = 0.7;
+      bgMusic.preload = "auto";
+      bgMusic.play();
+    }
+  }, [isStartMenuDisplayed]);
+
   return (
     <>
       <Canvas

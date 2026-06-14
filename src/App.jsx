@@ -1,7 +1,13 @@
+import StartMenu from "./components/StartMenu.jsx";
 import Park from "./models/Park.jsx";
 
 function App() {
-  return <Park />;
+  return (
+    <>
+      <StartMenu />
+      <Park />
+    </>
+  );
 }
 
 export default App;
