@@ -3,19 +3,25 @@ import { create } from "zustand";
 const projectSFX = new Audio("/sfx/projects.mp3");
 projectSFX.volume = 0.5;
 
-export const useProjectStore = create((set) => ({
+export const useProjectStore = create((set, get) => ({
   selectedProject: null,
   isStartMenuDisplayed: true,
+  isMuted: false,
+  isNight: false,
 
   openProject: (project) => {
-    projectSFX.currentTime = 0;
-    projectSFX.play();
+    if (!get().isMuted) {
+      projectSFX.currentTime = 0;
+      projectSFX.play();
+    }
     set({ selectedProject: project });
   },
 
   closeProject: () => {
-    projectSFX.currentTime = 0;
-    projectSFX.play();
+    if (!get().isMuted) {
+      projectSFX.currentTime = 0;
+      projectSFX.play();
+    }
     set({ selectedProject: null });
   },
 
@@ -23,5 +29,17 @@ export const useProjectStore = create((set) => ({
     projectSFX.currentTime = 0;
     projectSFX.play();
     set({ isStartMenuDisplayed: false });
+  },
+
+  toggleMute: () => {
+    set((state) => ({
+      isMuted: !state.isMuted,
+    }));
+  },
+
+  toggleNight: () => {
+    set((state) => ({
+      isNight: !state.isNight,
+    }));
   },
 }));

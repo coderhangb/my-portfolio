@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { useGLTF, OrbitControls } from "@react-three/drei";
@@ -58,17 +58,26 @@ const ParkModel = () => {
 };
 
 function Park() {
-  const { isStartMenuDisplayed } = useProjectStore();
+  const { isStartMenuDisplayed, isMuted, isNight, toggleMute, toggleNight } =
+    useProjectStore();
+
+  const bgMusicRef = useRef(null);
 
   useEffect(() => {
-    if (!isStartMenuDisplayed) {
-      const bgMusic = new Audio("/sfx/background-music.mp3");
-      bgMusic.loop = true;
-      bgMusic.volume = 0.7;
-      bgMusic.preload = "auto";
+    bgMusicRef.current = new Audio("/sfx/background-music.mp3");
+    bgMusicRef.current.loop = true;
+    bgMusicRef.current.volume = 0.7;
+  }, []);
+
+  useEffect(() => {
+    const bgMusic = bgMusicRef.current;
+
+    if (!isStartMenuDisplayed && !isMuted) {
       bgMusic.play();
+    } else {
+      bgMusic.pause();
     }
-  }, [isStartMenuDisplayed]);
+  }, [isStartMenuDisplayed, isMuted]);
 
   return (
     <>
@@ -111,6 +120,25 @@ function Park() {
       </Canvas>
 
       <Modal />
+
+      <div className="action-btn">
+        <button className="sound-btn" onClick={toggleMute}>
+          <img
+            src={
+              isMuted
+                ? "/icon/volume-mute-line.svg"
+                : "/icon/volume-down-line.svg"
+            }
+            alt=""
+          />
+        </button>
+        <button className="light-btn" onClick={toggleNight}>
+          <img
+            src={isNight ? "/icon/moon-line.svg" : "/icon/sun-line.svg"}
+            alt=""
+          />
+        </button>
+      </div>
     </>
   );
 }

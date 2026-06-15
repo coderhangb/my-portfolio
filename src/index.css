@@ -34,7 +34,7 @@ button {
   height: 100vh;
   width: 100vw;
   position: fixed;
-  z-index: 10;
+  z-index: 11;
   background: #ad8671;
   border: 12px solid #fff;
   display: flex;
@@ -132,4 +132,25 @@ button {
 .modal-visit-btn:hover {
   color: #fff;
   background: #ad8671;
+}
+
+/* ===================== Action Button ===================== */
+.action-btn {
+  position: fixed;
+  z-index: 10;
+  top: 3%;
+  right: 2%;
+  display: flex;
+  column-gap: 15px;
+}
+
+.sound-btn,
+.light-btn {
+  height: 48px;
+  width: 48px;
+  border: 3px solid #fff;
+  background: #ad8671;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
