@@ -8,6 +8,13 @@ import Modal from "../components/Modal";
 const ParkModel = () => {
   const model = useGLTF("/models/portfolio.glb");
 
+  const tungtungtungsahurSound = new Audio("/sfx/tungtungtung.mp3");
+  tungtungtungsahurSound.volume = 0.7;
+  const sixsevenSound = new Audio("/sfx/67.mp3");
+  sixsevenSound.volume = 0.5;
+  const tralaleroSound = new Audio("/sfx/tralalero.mp3");
+  tralaleroSound.volume = 0.7;
+
   const clickable = [
     "67_1",
     "tungtungtungsahur",
@@ -32,7 +39,8 @@ const ParkModel = () => {
     "Plane018", // project 3
   ];
 
-  const { selectedProject, openProject, closeProject } = useProjectStore();
+  const { selectedProject, openProject, closeProject, isMuted } =
+    useProjectStore();
 
   model.scene.traverse((child) => {
     if (child.isMesh) {
@@ -45,6 +53,7 @@ const ParkModel = () => {
     <primitive
       object={model.scene}
       onClick={(e) => {
+        // Project Interaction
         if (
           (e.object.name === "Plane" || e.object.name === "Plane_1") &&
           selectedProject
@@ -52,6 +61,22 @@ const ParkModel = () => {
           closeProject();
         if (projects.includes(e.object.name) && !selectedProject)
           openProject(e.object.name);
+
+        // Brainrot Interaction
+        if (e.object.name === "tungtungtungsahur" && !isMuted) {
+          tungtungtungsahurSound.currentTime = 0;
+          tungtungtungsahurSound.play();
+        }
+
+        if (e.object.name === "TralaleloTralala_1" && !isMuted) {
+          tralaleroSound.currentTime = 0;
+          tralaleroSound.play();
+        }
+
+        if (e.object.name === "67_1" && !isMuted) {
+          sixsevenSound.currentTime = 0;
+          sixsevenSound.play();
+        }
       }}
     />
   );

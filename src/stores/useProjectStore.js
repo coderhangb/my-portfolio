@@ -32,12 +32,20 @@ export const useProjectStore = create((set, get) => ({
   },
 
   toggleMute: () => {
+    if (!get().isMuted) {
+      projectSFX.currentTime = 0;
+      projectSFX.play();
+    }
     set((state) => ({
       isMuted: !state.isMuted,
     }));
   },
 
   toggleNight: () => {
+    if (!get().isMuted) {
+      projectSFX.currentTime = 0;
+      projectSFX.play();
+    }
     set((state) => ({
       isNight: !state.isNight,
     }));
